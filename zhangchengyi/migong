@@ -1,0 +1,39 @@
+#include<iostream>
+#include<cstdio>
+using namespace std;
+bool a[15][15],v[15][15];
+int m,n,t,p,q,s,d[5]={-1,0,1,0,-1};
+void dfs(int x,int y)
+{
+	if(x==p&&y==q)
+	{
+	s++;
+	return;
+	}
+	for(int k=0;k<4;k++)
+	{
+		int tx=x+d[k];
+		int ty=y+d[k+1];
+		if(tx>=1&&ty>=1&&tx<=n&&ty<=m&&!a[tx][ty]&&!v[tx][ty])
+		{
+			v[tx][ty]=true;
+			dfs(tx,ty);
+			v[tx][ty]=false;
+		}
+	}
+	return;
+}
+int main()
+{
+	int startx,starty,zx,zy;
+	cin>>n>>m>>t>>startx>>starty>>p>>q;
+	a[startx][starty]=true;
+	while(t--)
+	{
+		cin>>zx>>zy;
+		a[zx][zy]=true;
+	}
+	dfs(startx,starty);
+	cout<<s;
+	return 0;
+}
