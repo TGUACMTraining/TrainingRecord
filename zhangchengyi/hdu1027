@@ -1,0 +1,33 @@
+#include<stdio>
+int a[1001],b[1001],n,m,s;
+void dfs(int step)
+{
+	int i;
+	if(step==n+1){
+		s++;
+		if(s==m){
+			for(i=1;i<n;i++){
+				printf("%d ",a[i]);
+			}
+		printf("%d\n",a[n]);
+		}
+		return;
+	}
+	for(i=1;i<=n;i++){
+		if(b[i]==0){
+			a[step]=i;
+			b[i]=1;
+			dfs(step+1);
+			b[i]=0;
+		}
+	}
+	return;
+}
+int main()
+{
+	while(scanf("%d%d",&n,&m))
+	{
+		s=0;
+		dfs(1);
+	}
+}
