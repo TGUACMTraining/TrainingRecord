@@ -1,4 +1,5 @@
-//https://www.luogu.com.cn/problem/P1605#include <iostream>
+//https://www.luogu.com.cn/problem/P1605
+#include <iostream>
 #include <vector>
 using namespace std;
 class Maze {
