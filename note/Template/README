@@ -1,0 +1,12 @@
+1s内运算量为1e8,
+{
+    1e4 -> O(n^2)
+    1e6 -> O(nlogn)
+    1e7 -> O(n)
+}
+
+g++ printf double 时，用%f，不能用%lf
+
+const int INF = 0x3f3f3f;//1e9
+memset(arr,INF,sizeof(arr));
+初始化为无穷大

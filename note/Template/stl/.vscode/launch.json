@@ -13,7 +13,7 @@
             "stopAtEntry": false,
             "cwd": "D:\\APP\\Dev-Cpp\\TDM-GCC-64\\bin",
             "environment": [],
-            "externalConsole": true,
+            "externalConsole": false,
             "MIMode": "gdb",
             "miDebuggerPath": "D:\\APP\\Dev-Cpp\\TDM-GCC-64\\bin\\gdb.exe",
             "setupCommands": [
