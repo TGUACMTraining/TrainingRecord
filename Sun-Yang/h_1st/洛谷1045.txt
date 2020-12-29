@@ -1,0 +1,77 @@
+题目描述
+从文件中输入P（1000<P<3100000），计算2的p次方的位数和最后500位数字（用十进制高精度数表示）
+
+题目分析
+	我晕了  这好难 所以看了题解
+	第一个输出 用了数论 位数为(log10(2)*p+1)
+	第二个输出 用了高精和快速幂 不然会tle
+	而且只保留了500位 让速度更快
+
+
+#include<iostream>
+#include<cstdio>
+#include<cmath>
+
+using namespace std;
+
+int ans[1000000],a[1000000];
+
+void cheng(int x[],int y[])
+{
+    int c[100000]={0};
+    c[0]=x[0]+y[0];
+    if(c[0]>500)c[0]=500;
+    for(int i=0;i<x[0];i++)
+	{
+        for(int j=0;j<y[0];j++)
+		{
+            c[i+j+1]+=x[i+1]*y[j+1];
+            if(c[i+j+1]>10)
+			{
+                c[i+j+2]+=c[i+j+1]/10;
+                c[i+j+1]%=10;
+            }
+            
+        }
+
+    }
+
+    for(int i=0;i<=c[0];i++)x[i]=c[i];
+
+}
+
+void print()
+{
+    int q=500;
+    for(int i=0;i<10;i++)
+	{
+        for(int j=0;j<50;j++)
+		{
+            printf("%d",ans[q]);
+            q--;
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int p;
+    scanf("%d",&p);
+    printf("%d\n",(int)(log10(2)*p+1));
+    ans[0]=ans[1]=a[0]=1;a[1]=2;
+    while(p!=0)
+	{
+        if(p&1!=0)cheng(ans,a);
+        p>>=1;
+        cheng(a,a);
+    }
+    
+
+    ans[1]--;
+
+    print();
+
+}
+	
