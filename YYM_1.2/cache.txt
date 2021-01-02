@@ -1,0 +1,3 @@
+ .\rad.exe  
+ Get-Content .\test.out|.\test.exe|out-file .\a.out
+ Get-Content .\test.out|.\HDU2037.exe|out-file .\b.out
