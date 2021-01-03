@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main()
+{
+	double sum,n1=0.4463,//n1 150千瓦时及以下部分
+	n2=0.4663,//n2 月用电量在151~400千瓦时的部分
+	n3=0.5663;//n3 月用电量在401千瓦时及以上部分
+	int n;
+	scanf("%d",&n);
+	if(n<=150) sum=n1*n;
+	if(n>150&&n<=400) sum=150*n1+(n-150)*n2;
+	if(n>400) sum=150*n1+250*n2+(n-400)*n3;
+	printf("%.1lf",sum);
+	return 0;
+}
+//题目网址：https://www.luogu.com.cn/problem/P1422
+//P1422 小玉家的电费
+//经典应用题，只需要处理好公式即可。
