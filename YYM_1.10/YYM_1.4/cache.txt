@@ -1,0 +1,4 @@
+ .\rad.exe  
+ Get-Content .\test.out|.\test.exe|out-file .\a.out
+ Get-Content .\test.out|.\HDU4450.exe|out-file .\b.out
+.\csdn.exe
