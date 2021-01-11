@@ -1,0 +1,118 @@
+题目描述
+若一个数（首位不为零）从左向右读与从右向左读都一样，我们就将其称之为回文数。
+
+例如：给定一个十进制数 56，将 56 加 65（即把 56 从右向左读），得到 121 是一个回文数。
+
+又如：对于十进制数 87：
+
+STEP1：87+78=165
+STEP2：165+561=726
+STEP3：726+627=1353
+STEP4：1353+3531=4884
+
+在这里的一步是指进行了一次 NN 进制的加法，上例最少用了 44 步得到回文数 48844884。
+
+写一个程序，给定一个 NN（2≤N≤10 或 N=16）进制数 M（100位之内），求最少经过几步可以得到回文数。
+
+如果在 30步以内（包含 30 步）不可能得到回文数，则输出 Impossible!。
+
+输入格式
+两行，分别是 N，M。
+
+输出格式
+如果能在 30 步以内得到回文数，输出格式形如 STEP=ans，其中 ans最少得到回文数的步数。
+
+否则输出 Impossible!。
+
+题目分析
+
+	要有一个判断回文数的函数或者方法 然后还有转换进制的时候会有问题16进制转换时不能直接转换因为字符9与字符A隔着字符
+	
+	所以就要注意变换
+
+	关键代码：bool pan(string nn)//判断回文数
+{
+	int n = nn.length();
+	int i = 0;
+	for(;i < n;i ++,n --)
+	{
+		if(nn[i] != nn[n - 1]) return false;
+	}
+	
+	return true;
+}
+
+#include<iostream>
+
+#include<string.h>
+
+using namespace std;
+
+int a[500];	string nn;
+
+bool pan(string nn)
+{
+	int n = nn.length();
+	int i = 0;
+	for(;i < n;i ++,n --)
+	{
+		if(nn[i] != nn[n - 1]) return false;
+	}
+	
+	return true;
+}
+
+int main()
+{
+	int n,g =-1;
+	cin >> n>> nn;
+	if(n == 16)
+	{
+		int t = nn.length();
+		for(int k = 0;k < t;k ++)
+		{
+			if(nn[k]>='A') nn[k] -= 7;
+		}
+	}
+	while(!pan(nn))
+	{
+		
+		int i = nn.length();
+		for(int ii = 0;ii < i;ii ++)
+		{
+			 int h = nn[ii] - '0' + nn[i - ii -1] - '0'+a[ii];
+			 int t = h % n;
+			 h /= n;
+			 a[ii] = t;
+			 a[ii+1] = h;
+		}
+	
+		if(a[i] != 0)
+		{
+			char b = a[0] + '0';
+			nn.push_back(b);
+			for(int k = i,kk = 0;k > 0;k --,kk ++)
+			{
+				nn[kk] = a[k] + '0';
+			}
+		}
+		else
+		{
+			for(int k = i - 1,kk = 0;k >= 0;k --,kk ++)
+			{
+				
+				
+				nn[kk] = a[k] + '0' ;
+			}
+		}
+		g++;
+		if(g >= 30) break;
+
+		
+		memset(a,0,sizeof(a));
+		
+	}
+
+	if(g >= 30) cout << "Impossible!";
+	else cout << "STEP=" << g+1;
+}

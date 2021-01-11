@@ -1,0 +1,68 @@
+题目
+构造三角形 给0，1点 在x轴输入n个数 t1 t2 ... tn 分别表示 t1,0   t2,0  .... tn,0
+
+求一共有多少个面积不重复的三角形
+
+输入格式
+输入n表示有n组数据
+输入k表示有个k个坐标
+接下来输入k个数
+
+
+输出格式
+输出有多少个面积不重复的三角形
+
+
+
+解题思路
+
+	
+	面积不用求直接两个坐标相减查重即可  这里定义了一个函数sou 从输入的数据中两两相减
+	
+	
+#include<iostream>
+#include<string.h>
+#include<algorithm>
+
+using namespace std;
+
+int a[100],b[100];
+int g;
+
+void sou(int n)
+{
+	if(n == 1) return ;
+	else 
+	{
+		int i = n - 1;
+		for(;i > 0;i --)
+		{
+			int iii = a[n] - a[i];
+			if(b[iii] == 0)
+			{
+				g++;
+				b[iii] = 1;
+			}
+		}
+		return sou(n-1);
+	}
+}
+
+int main()
+{
+	int t;
+	cin >> t;
+	for(int i = 1;i <=t ;i ++)
+	{
+		int n;
+		cin >> n;
+		for(int ii = 1;ii <= n;ii ++) 
+			cin >> a[ii];
+		sou(n);
+		cout << g<<'\n';
+		g = 0;
+		memset(a,0,sizeof(a));
+		memset(b,0,sizeof(b));
+		
+	}
+}
