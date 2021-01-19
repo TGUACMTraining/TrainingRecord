@@ -1,23 +1,6 @@
 {
     "files.associations": {
-        "xstring": "cpp",
-        "vector": "cpp",
-        "cstdio": "cpp",
-        "list": "cpp",
-        "ostream": "cpp",
-        "algorithm": "cpp",
-        "array": "cpp",
-        "bitset": "cpp",
-        "charconv": "cpp",
-        "functional": "cpp",
-        "iterator": "cpp",
-        "memory_resource": "cpp",
-        "tuple": "cpp",
-        "utility": "cpp",
-        "valarray": "cpp",
-        "variant": "cpp",
-        "xiosbase": "cpp",
-        "xutility": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "Enabled"
+        "stack": "cpp",
+        "iostream": "cpp"
+    }
 }
