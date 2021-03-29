@@ -9,20 +9,19 @@ int main(){
     getchar();
     
     while(n--){
-        stringstream ss;
-        string cen;
-        getline(cin,cen);
-        ss<<cen;
-        while(ss>>cen){
-            for(int i=cen.length()-1;i>=0;i--){
-                cout<<cen[i];
+        string str;
+        getline(cin,str);
+        for(int i=0;i<str.length();i++){
+            if(str[i]!=' '){
+                for(int j=i;j<=str.length();j++){
+                    if(str[j]==' '||j==str.length()){
+                        reverse(str.begin()+i,str.begin()+j);
+                        i=j;
+                        break;
+                    }
+                }
             }
-            if(flag[0])
-            cout<<" ";
-            flag[0]=1;
         }
-        if(flag[1])
-        cout<<endl;
-        flag[1]=1;
+        cout<<str<<endl;
     }
 }
