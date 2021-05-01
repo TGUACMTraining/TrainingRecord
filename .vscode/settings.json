@@ -98,5 +98,6 @@
         "stdarg.h": "c",
         "climits": "cpp",
         "*.rh": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }
