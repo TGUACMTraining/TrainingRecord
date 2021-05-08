@@ -1,0 +1,14 @@
+数组根据查询要求来确定从0还是1开始读入
+数组求和应优先考虑前缀和//二分答案时可能会遇到
+&优先级低于+-*/
+所以快读：
+char*p;
+template<class T> inline void read(register T &x){
+    x=0;
+    while(!isdigit(*p))p++;
+    while(isdigit(*p))x=x*10+(*p++&15);   //此处注意&在括号内
+}
+p=new char[caches_input];
+fread(p,1,caches_input,stdin);
+read(n),read(m);
+结果保留优先用long long
