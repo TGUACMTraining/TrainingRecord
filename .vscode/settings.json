@@ -97,7 +97,13 @@
         "xutility": "cpp",
         "stdarg.h": "c",
         "climits": "cpp",
-        "*.rh": "cpp"
+        "*.rh": "cpp",
+        "hash_map": "cpp",
+        "stop_token": "cpp",
+        "*.tcc": "cpp",
+        "string_view": "cpp",
+        "rope": "cpp",
+        "slist": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

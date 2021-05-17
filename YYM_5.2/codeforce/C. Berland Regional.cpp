@@ -4,7 +4,7 @@
 #include<map>
 using namespace std;
 int cache[(int)2e5+10];
-vector<vector<int> >uni((int)2e5+10);
+vector<int> uni[(int)2e5+10];
 inline bool small(int a,int b){
     return a>b;
 }
@@ -43,4 +43,7 @@ int main(){
             }cout<<ans<<" "<<endl;
         }cout<<endl;
     }
+
+    cout << 123123123 << endl;
+    return 0;
 }
