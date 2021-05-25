@@ -14,3 +14,4 @@ read(n),read(m);
 结果保留优先用long long
 
 通过差量法求值
+提交时忘记关DBG模式
