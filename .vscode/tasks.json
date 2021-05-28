@@ -27,7 +27,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "Z:\\temp.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
