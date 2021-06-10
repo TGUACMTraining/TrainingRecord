@@ -1,13 +1,13 @@
-int exgcd(int a,int b,int &x,int &y)//æ‰©å±•æ¬§å‡ é‡Œå¾—ç®—æ³•
+int exgcd(int a,int b,int &x,int &y)//À©Õ¹Å·¼¸ÀïµÃËã·¨
 {
     if(b==0)
     {
         x=1;y=0;
-        return a;  //åˆ°è¾¾é€’å½’è¾¹ç•Œå¼€å§‹å‘ä¸Šä¸€å±‚è¿”å›
+        return a;  //µ½´ïµİ¹é±ß½ç¿ªÊ¼ÏòÉÏÒ»²ã·µ»Ø
     }
     int r=exgcd(b,a%b,x,y);
-    int temp=y;    //æŠŠx yå˜æˆä¸Šä¸€å±‚çš„
+    int temp=y;    //°Ñx y±ä³ÉÉÏÒ»²ãµÄ
     y=x-(a/b)*y;
     x=temp;
-    return r;     //å¾—åˆ°a bçš„æœ€å¤§å…¬å› æ•°
+    return r;     //µÃµ½a bµÄ×î´ó¹«ÒòÊı
 }

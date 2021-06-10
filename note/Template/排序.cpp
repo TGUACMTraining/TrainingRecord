@@ -15,8 +15,8 @@ void sort(int a[],int l,int r)
 			a[j]=m;
 		}
 	}
-	sor(a,l,j);
-	sor(a,j+1,r);
+	sort(a,l,j);
+	sort(a,j+1,r);
 }
 
 

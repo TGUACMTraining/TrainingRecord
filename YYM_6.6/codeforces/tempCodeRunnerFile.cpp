@@ -1,0 +1,2 @@
+
+#define ONLINE_JUDGE

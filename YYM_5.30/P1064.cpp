@@ -1,46 +1,61 @@
 #include <iostream>
 #include <list>
-#include <map>
+#include <vector>
 using namespace std;
-int money_limit;
-int items;
-struct atm {
-    int money;
-    int imp;
+bool not_root[70];
+vector<int> child[70];
+int imp[70];
+int cost[70];
+int money;
+int num;
+const int m_limit = 3.2e4 + 10;
+struct item {
+    int cost, want;
 };
-struct Item {
-    atm father;
-    list<atm> child;
-};
-map<int, Item> m;
-int ans[(int)3.2e4 + 10];
-int arr_child[(int)3.2e4 + 10];
-int arr_father[(int)3.2e4 + 10];
-int cache[(int)3.2e4 + 10];
+list<item> zos[70];
+int tail;
+int ans[m_limit];
 int main()
 {
-    scanf("%d%d", &money_limit, &items);
-    for (int i = 1; i <= items; i++) {
-        int a, b, f;
-        scanf("%d%d%d", a, b, f);
-        if (f == 0)
-            m[i].father = { a, b };
-        else
-            m[f].child.push_back({ a, b });
+    scanf("%d%d", &money, &num);
+    for (int i = 1; i <= num; i++) {
+        int cst, ip, fa;
+        scanf("%d%d%d", &cst, &ip, &fa);
+        if (fa != 0) {
+            child[fa].push_back(i);
+            not_root[i] = true;
+        }
+        imp[i] = ip;
+        cost[i] = cst;
     }
-    for (auto Index : m) {
-        auto& itm = Index.second;
-        memset(arr_child, 0, sizeof(arr_child));
-        for (auto x : itm.child) {
-            register int money = money_limit - itm.father.money;
-            for (; money >= x.money; money--) {
-                arr_child[money] = max(arr_child[money], arr_child[money - x.money] + x.imp * x.money);
+    for (int i = 1; i <= num; i++) {
+        if (!not_root[i]) {
+            int zo[m_limit] = { 0 };
+            int this_ans[m_limit] = { 0 };
+            for (auto c : child[i]) {
+                for (int ct = money - cost[i]; ct >= cost[c]; ct--) {
+                    zo[ct] = max(zo[ct], zo[ct - cost[c]] + imp[c] * cost[c]);
+                }
+            }
+            for (int ct = money; ct >= cost[i]; ct--) {
+                this_ans[ct] = zo[ct - cost[i]] + imp[i] * cost[i];
+            }
+            zos[++tail].push_back({ 0, 0 });
+            for (int i = 0; i <= money; i++) {
+                if ((*zos[tail].begin()).want != this_ans[i]) {
+                    zos[tail].push_front({ i, this_ans[i] });
+                }
             }
         }
-        memset(arr_father,0,sizeof(arr_father));
-        for(int i=itm.father.money;i<=money_limit;i++){
-            arr_father[i]=itm.father.money+arr_child[i-itm.father.money];
-        }
-
     }
+    for (int bag_i = 1; bag_i <= tail; bag_i++) {
+        auto& bag = zos[bag_i];
+        for (int i = money; i >= 0; i--) {
+            for (auto itm : bag) {
+                if(i-itm.cost>=0)
+                ans[i] = max(ans[i], ans[i - itm.cost] + itm.want);
+            }
+        }
+    }
+    printf("%d", ans[money]);
 }
